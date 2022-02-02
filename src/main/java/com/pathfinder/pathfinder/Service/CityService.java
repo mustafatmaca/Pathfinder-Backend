@@ -10,6 +10,7 @@ public interface CityService {
     void deleteCity(City city);
     City updateCity(String cityId, City city);
     City getCity(String cityId);
+    City getCityByName(String name);
     List<City> getAllCities();
     City addPlaceToCity(Place place, City city);
     City removePlaceFromCity(Place place, City city);
