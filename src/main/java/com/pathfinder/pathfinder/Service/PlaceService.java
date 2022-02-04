@@ -9,5 +9,6 @@ public interface PlaceService {
     void deletePlace(Place place);
     Place updatePlace(String placeId, Place place);
     Place getPlace(String placeId);
+    Place getPlaceByName(String name);
     List<Place> getAllPlaces();
 }
