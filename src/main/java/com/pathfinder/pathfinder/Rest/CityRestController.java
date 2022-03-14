@@ -51,28 +51,28 @@ public class CityRestController {
     }
 
     @GetMapping("/{name}")
-    public Response<City> getCityByName(@PathVariable String name){
+    public City getCity(@PathVariable String name){
         try {
             var response = cityService.getCityByName(name);
             if (response != null)
-                return new Response<>(true,null,response);
+                return response;
             else
-                return new Response<>(false,"City not found",null);
+                return null;
         } catch (Exception e) {
-            return new Response<>(false,e.getMessage(),null);
+            return null;
         }
     }
 
     @GetMapping("/")
-    public Response<List<City>> getAllCities(){
+    public List<City> getAllCities(){
         try {
             var response = cityService.getAllCities();
             if (response != null)
-                return new Response<>(true,null,response);
+                return response;
             else
-                return new Response<>(false,"No city found",null);
+                return null;
         } catch (Exception e) {
-            return new Response<>(false,e.getMessage(),null);
+            return null;
         }
     }
 

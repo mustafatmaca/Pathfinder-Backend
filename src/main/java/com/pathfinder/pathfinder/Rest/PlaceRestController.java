@@ -51,28 +51,28 @@ public class PlaceRestController {
     }
 
     @GetMapping("/{name}")
-    public Response<Place> getPlaceByName(@PathVariable String name){
+    public Place getPlace(@PathVariable String name){
         try {
             var response = placeService.getPlaceByName(name);
             if (response != null)
-                return new Response<>(true,null,response);
+                return response;
             else
-                return new Response<>(false,"Place not found",null);
+                return null;
         } catch (Exception e) {
-            return new Response<>(false,e.getMessage(),null);
+            return null;
         }
     }
 
     @GetMapping("/")
-    public Response<List<Place>> getAllPlaces(){
+    public List<Place> getAllPlaces(){
         try {
             var response = placeService.getAllPlaces();
             if (response != null)
-                return new Response<>(true,null,response);
+                return response;
             else
-                return new Response<>(false,"No Place Found",null);
+                return null;
         } catch (Exception e) {
-            return new Response<>(false,e.getMessage(),null);
+            return null;
         }
     }
 }
