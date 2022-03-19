@@ -28,6 +28,11 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
+    public List<Message> getAllMessages() {
+        return messageRepository.findAll();
+    }
+
+    @Override
     public List<Message> findMessagesBySender(String mail) {
         var foundUser = userRepository.findByMail(mail);
         return messageRepository.findBySender(foundUser);

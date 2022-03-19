@@ -26,42 +26,55 @@ public class MessageRestController {
         }
     }
 
+    @GetMapping("/")
+    public List<Message> getAllMessage(){
+        try {
+            var response = messageService.getAllMessages();
+            if (response != null)
+                return response;
+            else
+                return null;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     @GetMapping("/{messageId}")
-    public Response<Message> findMessage(@PathVariable String messageId){
+    public Message findMessage(@PathVariable String messageId){
         try {
             var response = messageService.findMessage(messageId);
             if (response != null)
-                return new Response<>(true,null,response);
+                return response;
             else
-                return new Response<>(false,"Message not found",null);
+                return null;
         } catch (Exception e) {
-            return new Response<>(false,e.getMessage(),null);
+            return null;
         }
     }
 
     @GetMapping("/Sender/{mail}")
-    public Response<List<Message>> findMessagesBySender(@PathVariable String mail){
+    public List<Message> findMessagesBySender(@PathVariable String mail){
         try {
             var response = messageService.findMessagesBySender(mail);
             if (response != null)
-                return new Response<>(true,null,response);
+                return response;
             else
-                return new Response<>(false,"No message found",null);
+                return null;
         } catch (Exception e) {
-            return new Response<>(false,e.getMessage(),null);
+            return null;
         }
     }
 
     @GetMapping("/ToUser/{mail}")
-    public Response<List<Message>> findMessagesByToUser(@PathVariable String mail){
+    public List<Message> findMessagesByToUser(@PathVariable String mail){
         try {
             var response = messageService.findMessagesByToUser(mail);
             if (response != null)
-                return new Response<>(true,null,response);
+                return response;
             else
-                return new Response<>(false,"No message found",null);
+                return null;
         } catch (Exception e) {
-            return new Response<>(false,e.getMessage(),null);
+            return null;
         }
     }
 

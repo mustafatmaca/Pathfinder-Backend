@@ -54,55 +54,55 @@ public class UserRestController {
     }
 
     @GetMapping("/{mail}")
-    public Response<User> getUserByMail(@PathVariable String mail) {
+    public User getUserByMail(@PathVariable String mail) {
         try {
             var response = userService.getUserByMail(mail);
             if (response != null)
-                return new Response<>(true,null,response);
+                return response;
             else
-                return new Response<>(false,"User not found",null);
+                return null;
         } catch (Exception e) {
-            return new Response<>(false,e.getMessage(),null);
+            return null;
         }
     }
 
     @GetMapping("/")
-    public Response<List<User>> getAllUsers(){
+    public List<User> getAllUsers(){
         try {
             var response = userService.getAllUsers();
             if (response != null)
-                return new Response<>(true,null,response);
+                return response;
             else
-                return new Response<>(false,"No users found",null);
+                return null;
         } catch (Exception e) {
-            return new Response<>(false,e.getMessage(),null);
+            return null;
         }
     }
 
     @GetMapping("/Guiders/{role}")
-    public Response<List<User>> getGuiders(@PathVariable String role){
+    public List<User> getGuiders(@PathVariable String role){
         try {
             var response = userService.getGuiders(role);
             if (response != null)
-                return new Response<>(true,null,response);
+                return response;
             else
-                return new Response<>(false,"No guiders found",null);
+                return null;
         } catch (Exception e) {
-            return new Response<>(false,e.getMessage(),null);
+            return null;
         }
     }
 
     @GetMapping("/Guiders/{city}/{role}")
-    public Response<List<User>> getGuidersByCity(@PathVariable String role, @PathVariable String city){
+    public List<User> getGuidersByCity(@PathVariable String role, @PathVariable String city){
         try {
             var foundCity = cityService.getCityByName(city);
             var response = userService.getGuidersByCity(role,foundCity);
             if (response != null)
-                return new Response<>(true,null,response);
+                return response;
             else
-                return new Response<>(false,"No guiders found",null);
+                return null;
         } catch (Exception e) {
-            return new Response<>(false,e.getMessage(),null);
+            return null;
         }
     }
 

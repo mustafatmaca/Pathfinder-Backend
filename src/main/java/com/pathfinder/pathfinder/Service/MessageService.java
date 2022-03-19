@@ -7,6 +7,7 @@ import java.util.List;
 public interface MessageService {
     Message saveMessage(Message message);
     Message findMessage(String messageId);
+    List<Message> getAllMessages();
     List<Message> findMessagesBySender(String mail);
     List<Message> findMessagesByToUser(String mail);
     void deleteMessage(Message message);
