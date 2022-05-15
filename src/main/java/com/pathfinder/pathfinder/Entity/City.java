@@ -14,5 +14,6 @@ import java.util.List;
 public class City {
     private String id;
     private String name;
-    private List<Place> places;
+    private double latitude;
+    private double longitude;
 }

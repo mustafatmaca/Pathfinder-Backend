@@ -1,11 +1,9 @@
 package com.pathfinder.pathfinder.Service;
 
 import com.pathfinder.pathfinder.Entity.City;
-import com.pathfinder.pathfinder.Entity.Place;
 import com.pathfinder.pathfinder.Repository.CityRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,8 +29,11 @@ public class CityServiceImpl implements CityService {
         var result = cityRepository.findById(cityId);
         var foundCity = result.get();
         if (foundCity != null)
-            if (city.getName() != null) foundCity.setName(city.getName());
-            if (city.getPlaces() != null) foundCity.setPlaces(city.getPlaces());
+            if (city.getName() != null) {
+                foundCity.setName(city.getName());
+                foundCity.setLatitude(city.getLatitude());
+                foundCity.setLongitude(city.getLongitude());
+            }
             cityRepository.save(foundCity);
         return foundCity;
     }
@@ -50,20 +51,5 @@ public class CityServiceImpl implements CityService {
     @Override
     public List<City> getAllCities() {
         return cityRepository.findAll();
-    }
-
-    @Override
-    public City addPlaceToCity(Place place, City city) {
-        if (city.getPlaces() == null)
-            city.setPlaces(new ArrayList<>());
-        city.getPlaces().add(place);
-        cityRepository.save(city);
-        return city;
-    }
-
-    @Override
-    public City removePlaceFromCity(Place place, City city) {
-        city.getPlaces().removeIf(i->i.getName().equals(place.getName()));
-        return cityRepository.save(city);
     }
 }

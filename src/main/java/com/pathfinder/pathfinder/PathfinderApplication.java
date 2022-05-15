@@ -1,23 +1,32 @@
 package com.pathfinder.pathfinder;
 
 import com.pathfinder.pathfinder.Entity.City;
-import com.pathfinder.pathfinder.Entity.Message;
-import com.pathfinder.pathfinder.Entity.Place;
 import com.pathfinder.pathfinder.Entity.User;
+import com.pathfinder.pathfinder.Repository.CityRepository;
 import com.pathfinder.pathfinder.Service.CityService;
-import com.pathfinder.pathfinder.Service.MessageService;
-import com.pathfinder.pathfinder.Service.PlaceService;
 import com.pathfinder.pathfinder.Service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @SpringBootApplication
-public class PathfinderApplication {
+public class PathfinderApplication implements CommandLineRunner{
+    CityRepository cityRepository;
+    CityService cityService;
+    UserService userService;
+
+    public PathfinderApplication(CityRepository cityRepository, CityService cityService ,UserService userService) {
+        this.cityRepository = cityRepository;
+        this.cityService = cityService;
+        this.userService = userService;
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(PathfinderApplication.class, args);
+    }
+
+
+    public void run(String... args) throws Exception{
+        userService.updateUser(userService.getUserByMail("zxc").getId(), new User(null,null,null,null,null,null,cityService.getCityByName("London"),null));
     }
 }

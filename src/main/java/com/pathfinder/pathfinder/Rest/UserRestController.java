@@ -20,12 +20,12 @@ public class UserRestController {
     }
 
     @PostMapping("/")
-    public Response<User> addUser(@RequestBody User user){
+    public User addUser(@RequestBody User user){
         try {
             var response = userService.addUser(user);
-            return new Response<>(true,"User added",response);
+            return response;
         } catch (Exception e) {
-            return new Response<>(false,e.getMessage(),null);
+            return null;
         }
     }
 
@@ -62,6 +62,20 @@ public class UserRestController {
             else
                 return null;
         } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @GetMapping("/{mail}/{password}")
+    public User checkLogin(@PathVariable String mail,@PathVariable String password) {
+        try{
+            var response = userService.checkLogin(mail,password);
+            if(response != null)
+                return response;
+            else
+                return null;
+        }
+        catch(Exception ex){
             return null;
         }
     }

@@ -12,6 +12,7 @@ public interface UserService {
     User updateUser(String userId, User user);
     User getUser(String userId);
     User getUserByMail(String mail);
+    User checkLogin(String mail,String password);
     User sendMessageToUser(String userId, Message message);
     List<User> getAllUsers();
     List<User> getGuiders(String role);

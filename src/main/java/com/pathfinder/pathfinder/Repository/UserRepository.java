@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface UserRepository extends MongoRepository<User, String> {
     User findByMail(String mail);
+    User findByMailAndPassword(String mail,String password);
     List<User> findByRole(String role);
     List<User> findByRoleAndAndCity(String role, City city);
 }

@@ -53,6 +53,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User checkLogin(String mail, String password) {
+        return userRepository.findByMailAndPassword(mail, password);
+    }
+
+    @Override
     public User sendMessageToUser(String userId, Message message) {
         var result = userRepository.findById(userId);
         var foundUser = result.get();
