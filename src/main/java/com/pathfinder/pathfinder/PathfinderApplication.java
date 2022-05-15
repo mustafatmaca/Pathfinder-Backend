@@ -27,6 +27,5 @@ public class PathfinderApplication implements CommandLineRunner{
 
 
     public void run(String... args) throws Exception{
-        userService.updateUser(userService.getUserByMail("zxc").getId(), new User(null,null,null,null,null,null,cityService.getCityByName("London"),null));
     }
 }
