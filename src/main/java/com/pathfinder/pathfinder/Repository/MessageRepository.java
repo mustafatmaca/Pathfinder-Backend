@@ -9,4 +9,5 @@ import java.util.List;
 public interface MessageRepository extends MongoRepository<Message, String> {
     List<Message> findBySender(User user);
     List<Message> findByToUser(User user);
+    List<Message> findByToUserOrSender(User user);
 }

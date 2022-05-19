@@ -10,5 +10,6 @@ public interface MessageService {
     List<Message> getAllMessages();
     List<Message> findMessagesBySender(String mail);
     List<Message> findMessagesByToUser(String mail);
+    List<Message> findMessagesByToUserOrSender(String mail);
     void deleteMessage(Message message);
 }

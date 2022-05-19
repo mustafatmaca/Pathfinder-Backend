@@ -39,10 +39,10 @@ public class MessageRestController {
         }
     }
 
-    @GetMapping("/{messageId}")
-    public Message findMessage(@PathVariable String messageId){
+    @GetMapping("/{mail}")
+    public List<Message> getAllMessagesByUser(@PathVariable String mail){
         try {
-            var response = messageService.findMessage(messageId);
+            var response = messageService.findMessagesByToUserOrSender(mail);
             if (response != null)
                 return response;
             else

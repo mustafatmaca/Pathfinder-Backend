@@ -45,6 +45,12 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
+    public List<Message> findMessagesByToUserOrSender(String mail) {
+        var foundUser = userRepository.findByMail(mail);
+        return messageRepository.findByToUserOrSender(foundUser);
+    }
+
+    @Override
     public void deleteMessage(Message message) {
         messageRepository.delete(message);
     }
